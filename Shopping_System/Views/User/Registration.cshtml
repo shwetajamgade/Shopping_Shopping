@@ -1,0 +1,63 @@
+﻿@model Shopping_System.Models.tbl_Registration
+@{
+    ViewBag.Title = "Registration";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["msg"] != null)
+{
+    <h3 class="text-success">@TempData["msg"]</h3>
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Registration", "User", FormMethod.Post))
+            {
+                <form>
+                    <div class="mb-3 mt-3">
+                        <label>Name</label>
+                        @*<input type="text" class="form-control" placeholder="Enter Name" />*@
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Enter Name", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Name, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Email</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Enter Email", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Email, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Password</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter Password", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Password, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Mobile</label>
+                        @Html.PasswordFor(model => model.Mobile, new { @class = "form-control", @placeholder = "Enter Mobile No.", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Mobile, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>State</label>
+                        @Html.TextBoxFor(model => model.State, new { @class = "form-control", @placeholder = "Enter State", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.State, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>City</label>
+                        @Html.TextBoxFor(model => model.City, new { @class = "form-control", @placeholder = "Enter City", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.City, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label>Address</label>
+                        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Enter Address", autocomplete = "off" })
+                        @Html.ValidationMessageFor(model => model.Address, " ", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <input type="submit" value="Registration" class="btn btn-outline-success" />
+                    </div>
+                </form>
+            }
+        </div>
+        <div class="col-md-6">
+            <img src="~/Images/regImg.png" class="img-fluid" />
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@using Shopping_System.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Cart</h2>
+<table class="table table-bordered table-dark">
+    <tr>
+        <th>Product Image</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Product Quantity</th>
+        <th>Total Amount</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in (List<Cart>)Session["Cart"])
+    {
+        <tr>
+            <td>
+                <img src="~/UploadeImages/@item.Product.ProductImage" alt="@item.Product.ProductName" width="100" height="100" />
+            </td>
+            <td>@item.Product.ProductName</td>
+            <td><b>Rs @item.Product.ProductPrice</b></td>
+            <td>@item.Quantity</td>
+            <td><b>Rs @(item.Product.ProductPrice * item.Quantity)</b></td>
+            <td>
+                <a href="@Url.Action("RemoveFromCart", "AddToCart", new {productId=item.Product.ProductID})" class="btn btn-outline-danger">Remove From cart</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="5">
+            <h2 class="text-center">Total amount to be paid:</h2>
+        </td>
+        <td>
+            @{ 
+                List<Cart> cart = (List<Cart>)Session["Cart"];
+                var total = (from data in cart select data.Product.ProductPrice * data.Quantity).Sum();
+            }
+            <h2><b>Rs @total</b></h2>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <div class=" d-flex justify-content-center">
+                <a href="#" class="btn btn-outline-light">Buy Now</a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+

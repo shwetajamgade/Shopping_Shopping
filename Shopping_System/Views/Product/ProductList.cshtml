@@ -1,0 +1,40 @@
+﻿@model List<Shopping_System.Models.tbl_Product>
+@{
+    ViewBag.Title = "ProductList";
+}
+
+
+<div class="container mt-5">
+    <div class="mt-3 mb-3">
+        <a href="@Url.Action("CreateProducts","Product")" class="btn btn-secondary">Add new Products</a>
+    </div>
+    <table class="table table-bordered table-dark table-hover table-striped-columns">
+        <h4 style="font-size:20px; font-family:Algerian; font-weight:700; text-align:center;">Products List</h4>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Product Image</th>
+            <th>Actions</th>
+        </tr>
+        @foreach(var products in Model)
+            {
+                <tr>
+                    <td>@products.ProductID</td>
+                    <td>@products.ProductName</td>
+                    <td>@products.ProductDescription</td>
+                    <td>@products.ProductPrice</td>
+                    <td>@products.ProductQuantity</td>
+                    <td>
+                        <img src="~/UploadeImages/@products.ProductImage" style="width:50px; height:50px;" alt="@products.ProductName" />
+                    </td>
+                <td>@Html.ActionLink("Edit", "EditProduct", "Product", new { id = products.ProductID },new {@class="btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteProduct", "Product", new { id = products.ProductID }, new {@class="btn btn-danger", onclick = "return confirm('Are you sure you want to delete the product ?')"})
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+

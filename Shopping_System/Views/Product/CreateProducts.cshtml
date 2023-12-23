@@ -1,0 +1,44 @@
+﻿@model Shopping_System.Models.tbl_Product 
+@{
+    ViewBag.Title = "CreateProducts";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <img src="~/Images/addProduct.png" />
+        </div>
+        <div class="col-sm-6">
+            @using (Html.BeginForm("CreateProducts", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="mb-3 mt-3">
+                    <label>Product Name</label>
+                    @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                </div>
+                <div class="mb-3 mt-3">
+                    <label>Product Description</label>
+                    @Html.TextBoxFor(model => model.ProductDescription, new { @class = "form-control" })
+                </div>
+                <div class="mb-3 mt-3">
+                    <label>Product Price</label>
+                    @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control" })
+                </div>
+                <div class="mb-3 mt-3">
+                    <label>Product Quantity</label>
+                    @Html.TextBoxFor(model => model.ProductQuantity, new { @class = "form-control" })
+                </div>
+                <div class="mb-3 mt-3">
+                    <label>select Image</label>
+                    <input type="file" class="form-control" name="ImageUpload" placeholder="Choose Image" />
+                </div>
+                <div class="mb-3 mt-3">
+                    <input type="submit" value="Add Product" class="btn btn-outline-secondary" onclick="return alert('Data addedd Successfully...')" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

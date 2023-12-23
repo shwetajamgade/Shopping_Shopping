@@ -1,0 +1,38 @@
+﻿@model List<Shopping_System.Models.tbl_Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3">
+    
+    <div class="mt-4 p-5 rounded text-center" style="background-color:#856dc3">
+        <h1 style="color:#fff; font-family:Batang;">Online Shopping System</h1>
+    </div>
+</div>
+<div class="container mt-5">
+    <h5 style="font-size:30px; font-family:'Bodoni MT'; font-weight:400;">Products</h5>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3 mt-3">
+                <div class="card" style="width:300px">
+                    <img class="card-img-top" src="~/UploadeImages/@item.ProductImage" alt="@item.ProductName">
+                    <div class="card-body">
+                        <h4 class="card-title">@item.ProductName</h4>
+                        <p class="card-text">@item.ProductDescription</p>
+                        <p class="card-text"><b>Rs @item.ProductPrice</b></p>
+                        <p class="card-text">@item.ProductQuantity</p>
+                        @*<a href="#" class="btn btn-primary">View Products</a>*@
+                    <div class="text-center">
+                        <a href="@Url.Action("AddToCart", "AddToCart", new {productId=item.ProductID})" class="btn btn-primary">Add To Cart</a>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
